@@ -31,6 +31,19 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Safe area pour les ecrans a encoche (iPhone X+) */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .music-toggle {
+        bottom: calc(15px + env(safe-area-inset-bottom));
+        right: calc(15px + env(safe-area-inset-right));
+    }
+
+    .side-nav {
+        right: calc(10px + env(safe-area-inset-right));
+    }
 }
 
 body {
@@ -1281,107 +1294,744 @@ body:active .cursor-heart::before {
 }
 
 /* ==========================================================================
-   Responsive
+   Responsive - Tablette (max 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 50px 20px;
+    }
+
+    .qualities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .poem-card {
+        padding: 40px 30px;
+    }
+
+    .letter-card {
+        padding: 40px 35px;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Mobile Large (max 768px)
    ========================================================================== */
 
 @media (max-width: 768px) {
-    .container {
-        padding: 40px 15px;
+    html {
+        font-size: 15px;
     }
 
+    .container {
+        padding: 40px 16px;
+    }
+
+    /* Header */
     .section-header {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
+        margin-bottom: 35px;
     }
 
     .section-title {
         white-space: normal;
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        order: -1;
+        width: 100%;
     }
 
     .decorative-line {
-        max-width: 60px;
+        max-width: 80px;
     }
 
-    .poem-card {
-        padding: 35px 25px;
-    }
-
-    .poem-line {
-        font-size: 0.95rem;
-    }
-
-    .qualities-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .letter-card {
-        padding: 35px 25px;
-    }
-
-    .letter-card::after {
-        left: 25px;
-    }
-
-    .countdown-item {
-        min-width: 70px;
-    }
-
-    .countdown-separator {
-        font-size: 2rem;
-    }
-
-    .side-nav {
-        right: 10px;
-    }
-
-    .nav-dot {
-        width: 10px;
-        height: 10px;
-    }
-
+    /* Enveloppe */
     .envelope {
         width: 220px;
         height: 160px;
     }
 
+    .envelope-text {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+
+    .letter-preview {
+        width: 50px;
+        height: 50px;
+    }
+
+    .letter-k {
+        font-size: 1.6rem;
+    }
+
+    /* Hero */
+    .heart-border {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-title {
+        margin-bottom: 10px;
+    }
+
+    .line-1 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .line-2 {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 3rem;
+    }
+
+    .hero-date {
+        font-size: 0.95rem;
+        letter-spacing: 3px;
+    }
+
+    .scroll-indicator {
+        margin-top: 35px;
+    }
+
+    .scroll-arrow {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Poeme */
+    .poem-card {
+        padding: 30px 20px;
+        border-radius: 12px;
+    }
+
+    .poem-line {
+        font-size: 0.9rem;
+        line-height: 1.9;
+    }
+
+    .poem-line.signature {
+        font-size: 1.2rem;
+    }
+
+    .poem-decoration {
+        width: 40px;
+        height: 40px;
+    }
+
+    .poem-decoration::before { width: 25px; }
+    .poem-decoration::after { height: 25px; }
+
+    /* Qualites */
+    .qualities-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .quality-card {
+        padding: 28px 20px;
+        border-radius: 12px;
+    }
+
+    .quality-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .quality-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .quality-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+
+    .quality-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Carousel */
     .reasons-carousel {
-        min-height: 280px;
+        min-height: 260px;
+        margin-bottom: 25px;
+    }
+
+    .reason-slide {
+        padding: 20px 15px;
+    }
+
+    .reason-number {
+        font-size: 3rem;
+        margin-bottom: 5px;
+    }
+
+    .reason-heart {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
     }
 
     .reason-text {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
 
-    .music-toggle {
-        bottom: 15px;
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Lettre */
+    .letter-card {
+        padding: 30px 20px;
+        border-radius: 8px;
+    }
+
+    .letter-card::after {
+        left: 20px;
+    }
+
+    .letter-content p {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        margin-bottom: 12px;
+    }
+
+    .letter-greeting {
+        font-size: 1.4rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    .letter-signature {
+        font-size: 1.5rem !important;
+    }
+
+    .letter-stamp {
+        width: 35px;
+        height: 35px;
+        top: 15px;
         right: 15px;
-        width: 42px;
-        height: 42px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-subtitle {
-        font-size: 2.5rem;
     }
 
+    /* Compteur */
     .countdown-timer {
         gap: 10px;
     }
 
-    .countdown-value {
-        font-size: 2rem;
+    .countdown-item {
+        min-width: 65px;
     }
 
+    .countdown-value {
+        font-size: 2.2rem;
+    }
+
+    .countdown-unit {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .countdown-separator {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .countdown-label {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        padding: 0 10px;
+    }
+
+    .infinity-symbol {
+        font-size: 3rem;
+    }
+
+    .infinity-love p {
+        font-size: 1.2rem;
+    }
+
+    /* Final */
     .giant-heart-animation {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
+        margin-bottom: 30px;
     }
 
     .central-heart {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .final-title {
+        font-size: 2.2rem;
+    }
+
+    .kenza-name {
+        font-size: 1.2em;
+    }
+
+    .final-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .restart-btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+
+    /* Navigation */
+    .side-nav {
+        right: 8px;
+        gap: 10px;
+    }
+
+    .nav-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .nav-dot::before {
+        display: none;
+    }
+
+    /* Musique */
+    .music-toggle {
+        bottom: 15px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .music-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Mobile Small (max 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 35px 12px;
+    }
+
+    /* Enveloppe */
+    .envelope {
+        width: 190px;
+        height: 140px;
+    }
+
+    .envelope-text {
+        font-size: 1rem;
+    }
+
+    .sparkle-container {
+        inset: -20px;
+    }
+
+    /* Hero */
+    .heart-border {
+        width: 65px;
+        height: 65px;
+    }
+
+    .hero-content {
+        padding: 15px;
+    }
+
+    .line-1 {
+        font-size: 1.3rem;
+    }
+
+    .line-2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2.4rem;
+    }
+
+    .hero-date {
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+
+    .scroll-indicator span {
+        font-size: 0.9rem;
+    }
+
+    /* Poeme */
+    .poem-card {
+        padding: 25px 16px;
+    }
+
+    .poem-line {
+        font-size: 0.85rem;
+        line-height: 1.85;
+    }
+
+    .poem-line.signature {
+        font-size: 1.1rem;
+    }
+
+    .poem-decoration {
+        width: 30px;
+        height: 30px;
+    }
+
+    .poem-decoration.top-left { top: 10px; left: 10px; }
+    .poem-decoration.top-right { top: 10px; right: 10px; }
+    .poem-decoration.bottom-left { bottom: 10px; left: 10px; }
+    .poem-decoration.bottom-right { bottom: 10px; right: 10px; }
+
+    /* Qualites */
+    .quality-card {
+        padding: 24px 16px;
+    }
+
+    .quality-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .quality-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Carousel */
+    .reasons-carousel {
+        min-height: 240px;
+    }
+
+    .reason-number {
+        font-size: 2.5rem;
+    }
+
+    .reason-heart {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 12px;
+    }
+
+    .reason-text {
+        font-size: 0.95rem;
+        padding: 0 5px;
+    }
+
+    .carousel-controls {
+        gap: 12px;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Lettre */
+    .letter-card {
+        padding: 25px 16px;
+    }
+
+    .letter-card::after {
+        left: 16px;
+    }
+
+    .letter-content p {
+        font-size: 0.88rem;
+        line-height: 1.8;
+    }
+
+    .letter-greeting {
+        font-size: 1.2rem !important;
+    }
+
+    .letter-signature {
+        font-size: 1.3rem !important;
+    }
+
+    /* Compteur */
+    .countdown-timer {
+        gap: 6px;
+    }
+
+    .countdown-item {
+        min-width: 55px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 10px 5px;
+    }
+
+    .countdown-value {
+        font-size: 1.8rem;
+    }
+
+    .countdown-unit {
+        font-size: 0.6rem;
+    }
+
+    .countdown-separator {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .infinity-symbol {
+        font-size: 2.5rem;
+    }
+
+    .infinity-love p {
+        font-size: 1rem;
+    }
+
+    /* Final */
+    .giant-heart-animation {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 25px;
+    }
+
+    .central-heart {
+        width: 60px;
+        height: 60px;
+    }
+
+    .final-title {
+        font-size: 1.8rem;
+    }
+
+    .word-by-word {
+        margin: 0 4px;
+    }
+
+    .final-subtitle {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .restart-btn {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .restart-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Navigation */
+    .side-nav {
+        right: 5px;
+        gap: 8px;
+    }
+
+    .nav-dot {
+        width: 8px;
+        height: 8px;
+        border-width: 1.5px;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Tres petit ecran (max 360px)
+   ========================================================================== */
+
+@media (max-width: 360px) {
+    .container {
+        padding: 30px 10px;
+    }
+
+    .envelope {
+        width: 170px;
+        height: 125px;
+    }
+
+    .line-2 {
+        font-size: 1.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+
+    .poem-line {
+        font-size: 0.8rem;
+    }
+
+    .countdown-item {
+        min-width: 48px;
+        padding: 8px 3px;
+    }
+
+    .countdown-value {
+        font-size: 1.5rem;
+    }
+
+    .countdown-separator {
+        font-size: 1.2rem;
+    }
+
+    .final-title {
+        font-size: 1.5rem;
+    }
+
+    .reason-text {
+        font-size: 0.88rem;
+    }
+}
+
+/* ==========================================================================
+   Responsive - Orientation paysage mobile
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .screen {
+        min-height: auto;
+        padding: 40px 0;
+    }
+
+    #envelope-screen,
+    #hero,
+    #final {
+        min-height: 100vh;
+    }
+
+    .hero-content {
+        padding: 10px 20px;
+    }
+
+    .heart-frame {
+        margin-bottom: 10px;
+    }
+
+    .heart-border {
+        width: 50px;
+        height: 50px;
+    }
+
+    .scroll-indicator {
+        margin-top: 15px;
+    }
+
+    .giant-heart-animation {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .central-heart {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ==========================================================================
+   Touch-friendly adjustments
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Zones tactiles plus grandes */
+    .carousel-btn {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        padding: 6px;
+        box-sizing: content-box;
+    }
+
+    .carousel-dots {
+        gap: 14px;
+    }
+
+    .nav-dot {
+        padding: 4px;
+        box-sizing: content-box;
+    }
+
+    .side-nav {
+        gap: 14px;
+    }
+
+    .music-toggle {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+    }
+
+    .restart-btn {
+        padding: 14px 32px;
+        min-height: 48px;
+    }
+
+    /* Desactiver les effets hover sur tactile */
+    .quality-card:hover {
+        transform: none;
+        box-shadow: 0 8px 30px rgba(231, 76, 111, 0.08);
+    }
+
+    .quality-card:hover::before {
+        transform: scaleX(0);
+    }
+
+    /* Active state pour le tactile */
+    .quality-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 20px rgba(231, 76, 111, 0.15);
+    }
+
+    .carousel-btn:active {
+        background: var(--gold);
+    }
+
+    .carousel-btn:active svg {
+        fill: var(--dark);
+    }
+
+    .envelope-wrapper:active .envelope-flap {
+        transform: rotateX(180deg);
+    }
+
+    /* Swipe hint */
+    .reasons-carousel::after {
+        content: 'Glissez pour naviguer';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        color: rgba(212, 165, 116, 0.4);
+        letter-spacing: 1px;
     }
 }
 

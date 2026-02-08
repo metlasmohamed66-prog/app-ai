@@ -301,6 +301,31 @@
         });
     });
 
+    // Touch/swipe support pour mobile
+    const carouselEl = document.querySelector('.reasons-carousel');
+    if (carouselEl) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const SWIPE_THRESHOLD = 50;
+
+        carouselEl.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselEl.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > SWIPE_THRESHOLD) {
+                if (diff > 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+                resetAutoSlide();
+            }
+        }, { passive: true });
+    }
+
     function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
             goToSlide(currentSlide + 1);
