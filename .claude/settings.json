@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "language": "french",
+  "outputStyle": "Explanatory",
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Task(Explore)",
+      "Task(Plan)",
+      "Skill(review)",
+      "Skill(commit)",
+      "Skill(refactor)",
+      "Skill(test-gen)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(curl * | bash)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/secrets/**)"
+    ],
+    "defaultMode": "default"
+  },
+  "env": {
+    "CLAUDE_CODE_EFFORT_LEVEL": "high",
+    "CLAUDE_CODE_AUTOCOMPACT_PCT_OVERRIDE": "70"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/block-dangerous-commands.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/lint-before-commit.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-commit-summary.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
